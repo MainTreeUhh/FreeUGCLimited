@@ -1,0 +1,72 @@
+local a = loadstring(game:HttpGet("https://pastefy.app/NxpMkes4/raw"))()
+local b = a:CreateWindow("Obby for free ugc")
+local c = b:AddFolder("Main")
+
+c:AddToggle({
+   text = "Auto Complete Obby",
+   state = false,
+   callback = function(d)
+       if d then
+           getgenv().obbyrun = true
+           local e = game.Players.LocalPlayer
+
+           getgenv().obbyloop1 = task.spawn(function()
+               while getgenv().obbyrun do
+                   for f = e.leaderstats.Stage.Value + 1, 100 do
+                       if not getgenv().obbyrun then break end
+                       e.Character:PivotTo(workspace.Checkpoints[f].CheckpointHitbox.CFrame)
+                       task.wait(0.1)
+                       e.Character.HumanoidRootPart.Anchored = true
+                       repeat task.wait() until not getgenv().obbyrun or e.leaderstats.Stage.Value >= f
+                       e.Character.HumanoidRootPart.Anchored = false
+                   end
+                   task.wait(5)
+               end
+           end)
+
+           getgenv().obbyloop2 = task.spawn(function()
+               while getgenv().obbyrun do
+                   pcall(function()
+                       firesignal(e.PlayerGui.Windows.Rebirth.Frame["Main body for Rebirth"]["Rebirth Button"].Activated)
+                   end)
+                   task.wait()
+               end
+           end)
+       else
+           getgenv().obbyrun = false
+           local g = game.Players.LocalPlayer
+           if g.Character and g.Character:FindFirstChild("HumanoidRootPart") then
+               g.Character.HumanoidRootPart.Anchored = false
+           end
+       end
+   end
+})
+
+c:AddButton({
+   text = "Anti AFK",
+   callback = function()
+       local h = game:GetService('VirtualUser')
+       game:GetService('Players').LocalPlayer.Idled:Connect(function()
+           h:CaptureController()
+           h:ClickButton2(Vector2.new())
+       end)
+   end
+})
+
+local i = b:AddFolder("YT: MainTreeUhh")
+
+i:AddButton({
+   text = "Copy YT Link",
+   callback = function()
+       setclipboard("https://www.youtube.com/@MainTreeUhh")
+   end
+})
+
+i:AddButton({
+   text = "Copy Discord Link",
+   callback = function()
+       setclipboard("https://discord.gg/6CZAHjTqD6")
+   end
+})
+
+a:Init()
