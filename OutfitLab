@@ -1,0 +1,67 @@
+local a = loadstring(game:HttpGet("https://raw.githubusercontent.com/MainTreeUhh/ab/main/cf"))()
+local b = a:CreateWindow("Outfit Lab")
+local c = b:AddFolder("Main")
+local d = b:AddFolder("YT: MainTreeUhh")
+
+c:AddToggle({
+   text = "Auto Spin Wheel",
+   state = false,
+   callback = function(e)
+       if e then
+           getgenv().f = true
+           getgenv().g = task.spawn(function()
+               while getgenv().f do
+                   game:GetService("ReplicatedStorage").SpinWheel:InvokeServer("spin")
+                   task.wait(3)
+               end
+           end)
+       else
+           getgenv().f = false
+       end
+   end
+})
+
+c:AddToggle({
+   text = "Auto Compete Show",
+   state = false,
+   callback = function(h)
+       if h then
+           getgenv().i = true
+           getgenv().j = task.spawn(function()
+               while getgenv().i do
+                   game.Players.LocalPlayer.Character:PivotTo(workspace.ContestantPad.Field:GetPivot())
+                   task.wait(5)
+               end
+           end)
+       else
+           getgenv().i = false
+       end
+   end
+})
+
+c:AddButton({
+   text = "Anti AFK",
+   callback = function()
+       local k = game:GetService("VirtualUser")
+       game:GetService("Players").LocalPlayer.Idled:Connect(function()
+           k:CaptureController()
+           k:ClickButton2(Vector2.new())
+       end)
+   end
+})
+
+d:AddButton({
+   text = "Copy YT Link",
+   callback = function()
+       setclipboard("https://www.youtube.com/@MainTreeUhh")
+   end
+})
+
+d:AddButton({
+   text = "Copy Discord Link",
+   callback = function()
+       setclipboard("https://discord.gg/6CZAHjTqD6")
+   end
+})
+
+a:Init()
