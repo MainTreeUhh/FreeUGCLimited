@@ -1,0 +1,38 @@
+local a = loadstring(game:HttpGet("https://raw.githubusercontent.com/MainTreeUhh/ab/main/cf"))()
+local b = a:CreateWindow("Saelir Avatar Catalog")
+local c = b:AddFolder("Main")
+local d = b:AddFolder("YT: MainTreeUhh")
+
+c:AddButton({
+    text = "Instant UGC",
+    callback = function()
+        local e = {
+            "bulkBuy",
+            {
+                items = {
+                    {
+                        id = 138093017206031,
+                        itemType = "Asset"
+                    }
+                }
+            }
+        }
+        game:GetService("ReplicatedStorage"):WaitForChild("CatalogAvatar"):WaitForChild("Remotes"):WaitForChild("Request"):InvokeServer(unpack(e))
+    end
+})
+
+d:AddButton({
+    text = "Copy YT Link",
+    callback = function()
+        setclipboard("https://www.youtube.com/@MainTreeUhh")
+    end
+})
+
+d:AddButton({
+    text = "Copy Discord Link",
+    callback = function()
+        setclipboard("https://discord.gg/6CZAHjTqD6")
+    end
+})
+
+a:Init()
